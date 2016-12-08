@@ -11,5 +11,14 @@ Rails.application.routes.draw do
   post    '/users/update'                   => 'users#update'
   delete  '/users/:id'                      => 'users#destroy'
   
+  
+  get     '/cart'                           => 'carts#index'
+  post    '/buy'                           => 'carts#add'  
+  delete  '/cart'                           => 'carts#remove'
+  delete  '/cart/close'                     => 'carts#close'
+
+
+
+  
   root "items#index"
 end

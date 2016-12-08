@@ -19,5 +19,10 @@
 
   <dt>Price:</dt>
   <dd><%= @item.price %></dd>
+  <% if current_user and not current_user.is_admin? %>
+    <%= link_to "Buy", users_buy_path(item: @item.id, user: current_user), method: :post, :class => "btn btn-md btn-success" %>
+  <% else %>
+    <%= link_to "Buy", login_path, :class => "btn btn-md btn-success" %>
+  <% end %>
 
 </dl>
