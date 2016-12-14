@@ -11,16 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161207231656) do
+ActiveRecord::Schema.define(version: 20161214030732) do
 
   create_table "carts", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "status",     default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "carts", ["user_id"], name: "index_carts_on_user_id"
+
+  create_table "carts_items", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "cart_id"
+  end
+
+  add_index "carts_items", ["cart_id"], name: "index_carts_items_on_cart_id"
+  add_index "carts_items", ["item_id"], name: "index_carts_items_on_item_id"
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
@@ -29,14 +37,6 @@ ActiveRecord::Schema.define(version: 20161207231656) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
-
-  create_table "items_cart", force: :cascade do |t|
-    t.integer "items_id"
-    t.integer "cart_id"
-  end
-
-  add_index "items_cart", ["cart_id"], name: "index_items_cart_on_cart_id"
-  add_index "items_cart", ["items_id"], name: "index_items_cart_on_items_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email"

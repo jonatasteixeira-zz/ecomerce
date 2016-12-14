@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :carts
+#  resources :carts
   resources :items
   
   get     '/logout'                         => 'sessions#destroy'
@@ -12,13 +12,10 @@ Rails.application.routes.draw do
   delete  '/users/:id'                      => 'users#destroy'
   
   
-  get     '/cart'                           => 'carts#index'
-  post    '/buy'                           => 'carts#add'  
+  get     '/carts'                           => 'carts#index'
   delete  '/cart'                           => 'carts#remove'
+  post    '/buy'                            => 'carts#add'  
   delete  '/cart/close'                     => 'carts#close'
-
-
-
   
   root "items#index"
 end

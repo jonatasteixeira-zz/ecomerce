@@ -48,11 +48,6 @@ class UsersController < ApplicationController
       redirect_to users_path, :flash => { :error => "You have to keep some user as administrator" }
     end
   end
-  
-  # POST /users/buy
-  def buy
-    puts params
-  end
 
   private
   def user_params
