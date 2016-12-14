@@ -3,9 +3,11 @@
     <span class="glyphicon glyphicon-list-alt"></span>
     Back
   <% end %>
-  <%= link_to edit_item_path(@item), class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-pencil"></span>
-    Edit
+  <% if current_user and current_user.is_admin? %>
+    <%= link_to edit_item_path(@item), class: 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-pencil"></span>
+      Edit
+    <% end %>
   <% end %>
   <h1>Show item</h1>
 </div>
@@ -19,11 +21,13 @@
 
   <dt>Price:</dt>
   <dd><%= @item.price %></dd>
-  <% if current_user and not current_user.is_admin? %>
   
-    <%= link_to "Buy", buy_path(item: @item.id), method: :post, :class => "btn btn-md btn-success" %>
+  <% if current_user %>
+    <% if  not current_user.is_admin? %>
+      <%= link_to "Buy", buy_path(item: @item.id), method: :post, :class => "btn btn-md btn-success" %>
+    <% end %>
   <% else %>
-    <%= link_to "Buy", login_path, :class => "btn btn-md btn-success" %>
+    <%= link_to "Login to Buy", login_path, :class => "btn btn-md btn-success" %>
   <% end %>
 
 </dl>

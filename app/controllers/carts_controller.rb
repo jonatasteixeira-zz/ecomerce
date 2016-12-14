@@ -1,11 +1,11 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: [:index, :add, :remove, :finish]
+  before_action :set_cart, only: [:index, :add, :remove, :close]
   def index
   end
 
   def add
     if not current_user then
-      render login_path
+      redirect_to login_path
     end
     item = Item.find(params[:item])
     if not item.nil? then
@@ -33,8 +33,9 @@ class CartsController < ApplicationController
   end
 
   def close
-    @carts.status = "close"
-    @carts.save
+    @cart.status = "close"
+    @cart.save
+    redirect_to carts_path
   end
 
   private

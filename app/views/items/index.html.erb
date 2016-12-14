@@ -1,8 +1,14 @@
 <div class="page-header">
-  <%= link_to new_item_path, class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-plus"></span>
-    New Item
+  
+  <% if current_user and current_user.is_admin? %>
+  
+    <%= link_to new_item_path, class: 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-plus"></span>
+      New Item
+      <% end %>
   <% end %>
+  
+  
   <h1>Listing items</h1>
 </div>
 

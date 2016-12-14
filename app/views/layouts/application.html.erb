@@ -33,11 +33,6 @@
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
           <% if current_user %>
-            <li class="">
-              <div>
-                Olá, <%=current_user.email.split('@').first%> 
-              </div>
-            </li>
             <% if current_user.is_admin? %>
               <li class="">
                 <%= link_to "Gerenciar", users_path %>
@@ -60,10 +55,6 @@
           <%end%>
         </ul>
       </div>
-      
-      
-      
-      
     </div>
   </nav>
   <div class="container">

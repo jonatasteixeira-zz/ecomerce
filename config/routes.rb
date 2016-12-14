@@ -13,9 +13,9 @@ Rails.application.routes.draw do
   
   
   get     '/carts'                           => 'carts#index'
-  delete  '/cart'                           => 'carts#remove'
-  post    '/buy'                            => 'carts#add'  
-  delete  '/cart/close'                     => 'carts#close'
+  delete  '/cart'                            => 'carts#remove'
+  post    '/buy'                             => 'carts#add'  
+  delete  '/cart/close'                      => 'carts#close'
   
   root "items#index"
 end
